@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niles Essanay Museum - All Placards</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header { background: #8B4513; color: white; padding: 40px; text-align: center; border-radius: 10px; margin-bottom: 30px; }
+        .header h1 { font-family: Arial; margin-bottom: 10px; }
+        .placard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .placard-card { background: white; padding: 20px; border-radius: 8px; text-align: center; text-decoration: none; color: #333; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: transform 0.3s; border-top: 4px solid #8B4513; }
+        .placard-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .card-number { font-size: 24px; font-weight: bold; color: #8B4513; margin-bottom: 10px; }
+        @media (max-width: 600px) { .placard-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Niles Essanay Silent Film Museum</h1>
+            <p>Interactive Historical Placards - Available in 6 Languages</p>
+        </div>
+        
+        <div class="placard-grid">
+            <a href="placards/PL1.html" class="placard-card">
+                <div class="card-number">1</div>
+                <div>Essanay Studio Foundation</div>
+            </a>
+            <a href="placards/PL2.html" class="placard-card">
+                <div class="card-number">2</div>
+                <div>Studio Construction Costs</div>
+            </a>
+            <a href="placards/PL3.html" class="placard-card">
+                <div class="card-number">3</div>
+                <div>Construction Progress</div>
+            </a>
+            <!-- Add cards for PL4 through PL27 -->
+            <a href="placards/PL4.html" class="placard-card">
+                <div class="card-number">4</div>
+                <div>Early Essanay Studio</div>
+            </a>
+            <a href="placards/PL5.html" class="placard-card">
+                <div class="card-number">5</div>
+                <div>Film Production Scene</div>
+            </a>
+            <!-- Continue for all 27 placards -->
+        </div>
+    </div>
+</body>
+</html>
