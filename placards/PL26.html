@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard 26 - Darkroom</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .language-content { display: none; }
+        .language-content.active { display: block; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div class="language-content active" id="en-content">
+                <h1 class="title">Darkroom</h1>
+                <div class="content">The darkroom featured a rack and tank film developing apparatus. The rack (shown at the upper left and its winding stand) holds <span class="accent">200 feet</span> of film. It is immersed consecutively in each of the four tanks- developer, stop bath, fixer, and wash. Then taken into another room for drying on a large lath-wood drum.</div>
+                <div class="footer">Niles Essanay Silent Film Museum, California</div>
+            </div>
+            <div class="language-content" id="es-content">
+                <h1 class="title">Cuarto Oscuro</h1>
+                <div class="content">El cuarto oscuro contaba con un aparato para revelar películas compuesto por un estante y cuatro tanques. El estante (que se ve en la parte superior izquierda junto con su soporte enrollable) tiene capacidad para <span class="accent">200 pies</span> de película. La película se sumerge sucesivamente en cada uno de los cuatro tanques: revelador, baño de parada, fijador y lavado. A continuación, se traslada a otra sala para secarla en un gran tambor de madera.</div>
+                <div class="footer">Museo de Cine Mudo Essanay de Niles, California</div>
+            </div>
+            <div class="language-content" id="fr-content">
+                <h1 class="title">Chambre Noire</h1>
+                <div class="content">La chambre noire était équipée d'un support et d'un appareil de développement de films. Le support (visible en haut à gauche avec son support enrouleur) peut contenir <span class="accent">60 mètres</span> de film. Celui-ci est plongé successivement dans chacun des quatre bacs : révélateur, bain d'arrêt, fixateur et lavage. Il est ensuite transféré dans une autre pièce pour être séché sur un grand tambour en bois latté.</div>
+                <div class="footer">Musée du Cinéma Muet Essanay de Niles, Californie</div>
+            </div>
+            <div class="language-content" id="de-content">
+                <h1 class="title">Dunkelkammer</h1>
+                <div class="content">Die Dunkelkammer war mit einem Gestell und einer Tankvorrichtung zur Filmentwicklung ausgestattet. Das Gestell (oben links abgebildet, zusammen mit seinem Aufwickelständer) fasst <span class="accent">200 Fuß</span> Film. Dieser wird nacheinander in die vier Tanks getaucht – Entwickler, Stoppbad, Fixierbad und Waschbad. Anschließend wird er in einen anderen Raum gebracht, wo er auf einer großen Lattenholztrommel getrocknet wird.</div>
+                <div class="footer">Niles Essanay Stummfilm Museum, Kalifornien</div>
+            </div>
+            <div class="language-content" id="hi-content">
+                <h1 class="title">डार्करूम</h1>
+                <div class="content">डार्करूम में एक रैक और टैंक फिल्म डेवलपिंग उपकरण था। रैक (जो ऊपर बाईं ओर और उसके घुमावदार स्टैंड पर दिखाया गया है) <span class="accent">200 फीट</span> फिल्म रखता है। इसे लगातार चार टैंकों - डेवलपर, स्टॉप बाथ, फिक्सर और वॉश में डुबोया जाता है। फिर इसे एक बड़े लट्ठा-लकड़ी के ड्रम पर सुखाने के लिए दूसरे कमरे में ले जाया जाता है।</div>
+                <div class="footer">नाइल्स एसाने साइलेंट फिल्म संग्रहालय, कैलिफोर्निया</div>
+            </div>
+            <div class="language-content" id="zh-content">
+                <h1 class="title">暗室</h1>
+                <div class="content">暗室配备了挂架式暗箱和罐式冲洗设备。挂架（如左上图所示及其卷绕支架）可容纳<span class="accent">200英尺</span>胶片。胶片依次浸入四个冲洗槽——显影液、停止液、定影液及冲洗液。随后移入另一房间，置于大型木条滚筒上晾干。</div>
+                <div class="footer">加利福尼亚州奈尔斯埃萨奈无声电影博物馆</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

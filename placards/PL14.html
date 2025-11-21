@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard 14 - The Champion</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .language-content { display: none; }
+        .language-content.active { display: block; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div class="language-content active" id="en-content">
+                <h1 class="title">The Champion</h1>
+                <div class="content">The Champion: <span class="accent">Warren Sawyer</span> stands on the left, <span class="accent">Chaplin</span> is the blur in the middle. <span class="accent">Edna</span> sits in costume at the right with the bulldog beside her. Could that be <span class="accent">Roscoe Arbuckle</span> standing with his back to the camera visiting the set? <span class="accent">February 1915</span></div>
+                <div class="footer">Niles Essanay Silent Film Museum, California</div>
+            </div>
+            <div class="language-content" id="es-content">
+                <h1 class="title">El Campeón</h1>
+                <div class="content">El campeón: <span class="accent">Warren Sawyer</span> está de pie a la izquierda, <span class="accent">Chaplin</span> es la figura borrosa del centro. <span class="accent">Edna</span> está sentada con su traje a la derecha, con el bulldog a su lado. ¿Podría ser <span class="accent">Roscoe Arbuckle</span> el que está de espaldas a la cámara visitando el plató? <span class="accent">Febrero de 1915</span>.</div>
+                <div class="footer">Museo de Cine Mudo Essanay de Niles, California</div>
+            </div>
+            <div class="language-content" id="fr-content">
+                <h1 class="title">Le Champion</h1>
+                <div class="content">Le champion : <span class="accent">Warren Sawyer</span> se tient à gauche, <span class="accent">Chaplin</span> est la silhouette floue au milieu. <span class="accent">Edna</span> est assise en costume à droite, avec le bouledogue à ses côtés. Serait-ce <span class="accent">Roscoe Arbuckle</span>, debout dos à la caméra, en visite sur le plateau ? <span class="accent">Février 1915</span></div>
+                <div class="footer">Musée du Cinéma Muet Essanay de Niles, Californie</div>
+            </div>
+            <div class="language-content" id="de-content">
+                <h1 class="title">Der Champion</h1>
+                <div class="content">Der Champion: <span class="accent">Warren Sawyer</span> steht links, <span class="accent">Chaplin</span> ist die verschwommene Gestalt in der Mitte. <span class="accent">Edna</span> sitzt rechts in ihrem Kostüm, neben ihr die Bulldogge. Könnte das <span class="accent">Roscoe Arbuckle</span> sein, der mit dem Rücken zur Kamera steht und das Set besucht? <span class="accent">Februar 1915</span></div>
+                <div class="footer">Niles Essanay Stummfilm Museum, Kalifornien</div>
+            </div>
+            <div class="language-content" id="hi-content">
+                <h1 class="title">द चैंपियन</h1>
+                <div class="content">द चैंपियन: <span class="accent">वॉरेन सॉयर</span> बाईं ओर खड़े हैं, <span class="accent">चैपलिन</span> बीच में धुंधले दिखाई दे रहे हैं। <span class="accent">एडना</span> अपनी वेशभूषा में दाईं ओर बैठी हैं, उनके बगल में बुलडॉग है। क्या वह <span class="accent">रॉस्को अर्बकल</span> हो सकते हैं जो कैमरे की ओर पीठ करके सेट पर मिलने आए हैं? <span class="accent">फरवरी 1915</span>।</div>
+                <div class="footer">नाइल्स एसाने साइलेंट फिल्म संग्रहालय, कैलिफोर्निया</div>
+            </div>
+            <div class="language-content" id="zh-content">
+                <h1 class="title">冠军</h1>
+                <div class="content">冠军：<span class="accent">沃伦·索耶</span>站在左侧，<span class="accent">卓别林</span>是中间那个模糊的身影。<span class="accent">埃德娜</span>身着戏服坐在右侧，斗牛犬躺在她身旁。那个背对镜头站在片场的人，莫非是来探班的<span class="accent">罗斯科·阿布克尔</span>？<span class="accent">1915年2月</span></div>
+                <div class="footer">加利福尼亚州奈尔斯埃萨奈无声电影博物馆</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
