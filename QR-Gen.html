@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Placards - QR Codes</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 0 10px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .qr-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #667eea;
+            background: white;
+        }
+
+        .card-header {
+            margin-bottom: 15px;
+        }
+
+        .card-number {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .card-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .qr-container {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .qr-container canvas {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .url-display {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            word-break: break-all;
+            font-size: 0.85em;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+
+        .action-buttons {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+
+        .loading {
+            color: #667eea;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .qr-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Niles Museum Placards - QR Codes</h1>
+            <p class="subtitle">Scan QR codes to access all 27 digital placards</p>
+            <div class="controls">
+                <button class="btn" onclick="generateAllQRCodes()">Generate All QR Codes</button>
+                <button class="btn" onclick="downloadAllQRCodes()">Download All QR Codes</button>
+            </div>
+        </header>
+
+        <div class="qr-grid" id="qrGrid">
+            <!-- QR codes will be generated here -->
+        </div>
+
+        <footer>
+            <p>Niles Museum Collection &copy; 2024 | QR Codes for Digital Placards</p>
+        </footer>
+    </div>
+
+    <script>
+        // Museum placard data with URLs
+        const placards = [
+            { number: 1, title: "Ancient Civilizations", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL1.html" },
+            { number: 2, title: "Egyptian Dynasties", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL2.html" },
+            { number: 3, title: "Greek Philosophy", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL3.html" },
+            { number: 4, title: "Roman Empire", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL4.html" },
+            { number: 5, title: "Medieval Europe", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL5.html" },
+            { number: 6, title: "Renaissance Art", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL6.html" },
+            { number: 7, title: "Age of Exploration", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL7.html" },
+            { number: 8, title: "Scientific Revolution", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL8.html" },
+            { number: 9, title: "Industrial Revolution", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL9.html" },
+            { number: 10, title: "World Wars", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL10.html" },
+            { number: 11, title: "Space Exploration", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL11.html" },
+            { number: 12, title: "Digital Age", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL12.html" },
+            { number: 13, title: "Environmental Movement", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL13.html" },
+            { number: 14, title: "Civil Rights", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL14.html" },
+            { number: 15, title: "Medical Advances", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL15.html" },
+            { number: 16, title: "Ancient Americas", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL16.html" },
+            { number: 17, title: "African Kingdoms", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL17.html" },
+            { number: 18, title: "Asian Dynasties", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL18.html" },
+            { number: 19, title: "Oceanic Exploration", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL19.html" },
+            { number: 20, title: "Artistic Movements", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL20.html" },
+            { number: 21, title: "Musical Heritage", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL21.html" },
+            { number: 22, title: "Literary Classics", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL22.html" },
+            { number: 23, title: "Architectural Wonders", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL23.html" },
+            { number: 24, title: "Agricultural Revolution", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL24.html" },
+            { number: 25, title: "Maritime History", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL25.html" },
+            { number: 26, title: "Urban Development", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL26.html" },
+            { number: 27, title: "Future Visions", url: "https://itsnnaveendbp.github.io/niles-museum-placards/placards/PL27.html" }
+        ];
+
+        const qrGrid = document.getElementById('qrGrid');
+
+        // Function to generate QR code
+        function generateQRCode(containerId, url, placardNumber) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '<div class="loading">Generating QR code...</div>';
+            
+            QRCode.toCanvas(container, url, {
+                width: 160,
+                margin: 1,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function (error) {
+                if (error) {
+                    console.error('Error generating QR code:', error);
+                    container.innerHTML = '<div style="color: red;">Error generating QR code</div>';
+                }
+            });
+        }
+
+        // Function to create QR code cards
+        function createQRCodeCards() {
+            placards.forEach((placard, index) => {
+                const cardId = `qrCard${placard.number}`;
+                const containerId = `qrContainer${placard.number}`;
+                
+                const card = document.createElement('div');
+                card.className = 'qr-card';
+                card.id = cardId;
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-number">Placard ${placard.number}</div>
+                        <div class="card-title">${placard.title}</div>
+                    </div>
+                    <div class="qr-container" id="${containerId}"></div>
+                    <div class="url-display">
+                        ${placard.url}
+                    </div>
+                    <div class="action-buttons">
+                        <a href="${placard.url}" target="_blank" class="btn-small btn-primary">View Placard</a>
+                        <button onclick="downloadQRCode(${placard.number}, '${placard.title}')" class="btn-small btn-secondary">Download QR</button>
+                    </div>
+                `;
+                
+                qrGrid.appendChild(card);
+            });
+        }
+
+        // Function to generate all QR codes
+        function generateAllQRCodes() {
+            placards.forEach((placard, index) => {
+                setTimeout(() => {
+                    generateQRCode(`qrContainer${placard.number}`, placard.url, placard.number);
+                }, index * 200); // Stagger generation to prevent browser overload
+            });
+        }
+
+        // Function to download individual QR code
+        function downloadQRCode(placardNumber, title) {
+            const container = document.getElementById(`qrContainer${placardNumber}`);
+            const canvas = container.querySelector('canvas');
+            
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = `Niles-Museum-Placard-${placardNumber}-${title.replace(/\s+/g, '-')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } else {
+                alert('Please generate the QR code first by clicking "Generate All QR Codes"');
+            }
+        }
+
+        // Function to download all QR codes as ZIP
+        function downloadAllQRCodes() {
+            const canvases = document.querySelectorAll('canvas');
+            if (canvases.length === 0) {
+                alert('Please generate QR codes first by clicking "Generate All QR Codes"');
+                return;
+            }
+
+            // Simple sequential download since JSZip requires additional library
+            alert('This will download all 27 QR codes individually. Click OK to continue.');
+            
+            placards.forEach((placard, index) => {
+                setTimeout(() => {
+                    downloadQRCode(placard.number, placard.title);
+                }, index * 500);
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            createQRCodeCards();
+            // Auto-generate QR codes after a short delay
+            setTimeout(generateAllQRCodes, 1000);
+        });
+    </script>
+</body>
+</html>
