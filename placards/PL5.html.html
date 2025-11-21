@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard 5 - Film Production Scene</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .language-content { display: none; }
+        .language-content.active { display: block; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div class="language-content active" id="en-content">
+                <h1 class="title">Film Production Scene</h1>
+                <div class="content">At the new studio, set up with a temporary stage, <span class="accent">Carl Stockdale</span> (on the far left) observes the action. <span class="accent">Arthur Mackley</span> (at the camera) films a scene from The Days of the Pony Express with <span class="accent">Bill Cato, Spider Roach, Harry Todd, Lee Willard and Jack Roberts</span>. <span class="accent">Lawrence Abrott</span> leans on a stage brace. On the next set: <span class="accent">Stanley Sargent and Frank Dolan</span> stand next to the overhead support pole. <span class="accent">Ira Morgan</span> cranks the camera while <span class="accent">Jess Robbins</span> watches from the far right.</div>
+                <div class="footer">Niles Essanay Silent Film Museum, California</div>
+            </div>
+            <div class="language-content" id="es-content">
+                <h1 class="title">Escena de Producción Cinematográfica</h1>
+                <div class="content">En el nuevo estudio, equipado con un escenario temporal, <span class="accent">Carl Stockdale</span> (en el extremo izquierdo) observa la acción. <span class="accent">Arthur Mackley</span> (ante la cámara) filma una escena de The Days of the Pony Express con <span class="accent">Bill Cato, Spider Roach, Harry Todd, Lee Willard y Jack Roberts</span>. <span class="accent">Lawrence Abrott</span> se apoya en un puntal del escenario. En el siguiente plató: <span class="accent">Stanley Sargent y Frank Dolan</span> están de pie junto al poste de soporte superior. <span class="accent">Ira Morgan</span> acciona la cámara mientras <span class="accent">Jess Robbins</span> observa desde la extrema derecha.</div>
+                <div class="footer">Museo de Cine Mudo Essanay de Niles, California</div>
+            </div>
+            <div class="language-content" id="fr-content">
+                <h1 class="title">Scène de Production Cinématographique</h1>
+                <div class="content">Dans le nouveau studio, équipé d'un plateau temporaire, <span class="accent">Carl Stockdale</span> (à l'extrême gauche) observe l'action. <span class="accent">Arthur Mackley</span> (à la caméra) filme une scène de The Days of the Pony Express avec <span class="accent">Bill Cato, Spider Roach, Harry Todd, Lee Willard et Jack Roberts</span>. <span class="accent">Lawrence Abrott</span> s'appuie sur un support de scène. Sur le plateau suivant : <span class="accent">Stanley Sargent et Frank Dolan</span> se tiennent à côté du poteau de soutien aérien. <span class="accent">Ira Morgan</span> actionne la caméra tandis que <span class="accent">Jess Robbins</span> observe depuis l'extrême droite.</div>
+                <div class="footer">Musée du Cinéma Muet Essanay de Niles, Californie</div>
+            </div>
+            <div class="language-content" id="de-content">
+                <h1 class="title">Filmproduktionsszene</h1>
+                <div class="content">Im neuen Studio, das mit einer provisorischen Bühne eingerichtet wurde, beobachtet <span class="accent">Carl Stockdale</span> (ganz links) das Geschehen. <span class="accent">Arthur Mackley</span> (an der Kamera) filmt eine Szene aus „The Days of the Pony Express" mit <span class="accent">Bill Cato, Spider Roach, Harry Todd, Lee Willard und Jack Roberts</span>. <span class="accent">Lawrence Abrott</span> lehnt sich an eine Bühnenstütze. Auf dem nächsten Set: <span class="accent">Stanley Sargent und Frank Dolan</span> stehen neben der Überkopfstütze. <span class="accent">Ira Morgan</span> dreht die Kamera, während <span class="accent">Jess Robbins</span> von ganz rechts zusieht.</div>
+                <div class="footer">Niles Essanay Stummfilm Museum, Kalifornien</div>
+            </div>
+            <div class="language-content" id="hi-content">
+                <h1 class="title">फिल्म निर्माण दृश्य</h1>
+                <div class="content">नए स्टूडियो में, जो एक अस्थायी मंच के साथ स्थापित किया गया था, <span class="accent">कार्ल स्टॉकडेल</span> (सबसे बाईं ओर) गतिविधि का अवलोकन कर रहे हैं। <span class="accent">आर्थर मैकली</span> (कैमरे पर), <span class="accent">बिल कैटो, स्पाइडर रोच, हैरी टॉड, ली विलार्ड और जैक रॉबर्ट्स</span> के साथ "द डेज़ ऑफ़ द पोनी एक्सप्रेस" से एक दृश्य फिल्मा रहे हैं। <span class="accent">लॉरेंस एब्रॉट</span> एक स्टेज ब्रेस पर झुके हुए हैं। अगले सेट पर: <span class="accent">स्टेनली सार्जेंट और फ्रैंक डोलन</span> ओवरहेड सपोर्ट पोल के बगल में खड़े हैं। <span class="accent">इरा मॉर्गन</span> कैमरा चला रहे हैं जबकि <span class="accent">जेस रॉबिन्स</span> सबसे दाहिनी ओर से देख रहे हैं।</div>
+                <div class="footer">नाइल्स एसाने साइलेंट फिल्म संग्रहालय, कैलिफोर्निया</div>
+            </div>
+            <div class="language-content" id="zh-content">
+                <h1 class="title">电影拍摄现场</h1>
+                <div class="content">在新搭建的临时摄影棚里，<span class="accent">卡尔·斯托克代尔</span>（最左侧）正观察拍摄过程。<span class="accent">亚瑟·麦克利</span>（持摄像机者）正在拍摄《驿马快信时代》的场景，演员包括<span class="accent">比尔·卡托、斯派德·罗奇、哈里·托德、李·威拉德和杰克·罗伯茨</span>。<span class="accent">劳伦斯·阿布罗特</span>倚靠在舞台支架上。在相邻的布景中：<span class="accent">斯坦利·萨金特和弗兰克·多兰</span>站在顶部支撑杆旁。<span class="accent">艾拉·摩根</span>转动摄影机，<span class="accent">杰斯·罗宾斯</span>在最右侧观望。</div>
+                <div class="footer">加利福尼亚州奈尔斯埃萨奈无声电影博物馆</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard 12 - Studio Main Building</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .language-content { display: none; }
+        .language-content.active { display: block; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div class="language-content active" id="en-content">
+                <h1 class="title">Studio Main Building</h1>
+                <div class="content">The state of the art Studios main building (200 feet long 50 feet deep and 18 feet high) included in its central portion the fifty-foot-square production stage lit by artificial lights. Behind it was the glass-enclosed stage going back another 75 feet (and 60 feet wide) the West Wing house a carpenter shop, a scene dock for painting backdrops, a prop room, a paint shop, and the wardrobe room. A dark room for developing film was located next to the stages. At the far west wall was a concrete film vault. Anderson's office was in the east wing... The next room down the hall was Josephine Rector's office... dressing rooms, the reception room and a small theater filled with the remainder of the east wing, with editing room attached to the projection booth. On the second floor of that wing were more dressing rooms.</div>
+                <div class="footer">Niles Essanay Silent Film Museum, California</div>
+            </div>
+            <div class="language-content" id="es-content">
+                <h1 class="title">Edificio Principal del Estudio</h1>
+                <div class="content">El edificio principal de los estudios, de última generación (60 metros de largo, 15 metros de profundidad y 5 metros de altura), incluía en su parte central un escenario de producción de 15 metros cuadrados iluminado con luces artificiales. Detrás de él se encontraba el escenario acristalado, con una profundidad adicional de 75 pies (y 60 pies de ancho). El ala oeste albergaba un taller de carpintería, un muelle para pintar fondos, un almacén de atrezo, un taller de pintura y el vestuario. Junto a los escenarios había una sala oscura para revelar películas. En el extremo oeste había una cámara acorazada de hormigón para guardar películas. La oficina de Anderson estaba en el ala este... La siguiente sala al final del pasillo era la oficina de Josephine Rector... Los camerinos, la sala de recepción y un pequeño teatro ocupaban el resto del ala este, con una sala de montaje adjunta a la cabina de proyección. En la segunda planta de esa ala había más camerinos.</div>
+                <div class="footer">Museo de Cine Mudo Essanay de Niles, California</div>
+            </div>
+            <div class="language-content" id="fr-content">
+                <h1 class="title">Bâtiment Principal du Studio</h1>
+                <div class="content">Le bâtiment principal des studios, à la pointe de la technologie (60 mètres de long, 15 mètres de profondeur et 5 mètres de haut), comprenait dans sa partie centrale un plateau de production de 15 mètres carrés éclairé par des lumières artificielles. Derrière celui-ci se trouvait un plateau vitré de 23 mètres de long (et 18 mètres de large). L'aile ouest abritait un atelier de menuiserie, un quai de scène pour la peinture des toiles de fond, une salle des accessoires, un atelier de peinture et la salle des costumes. Une chambre noire pour le développement des films était située à côté des plateaux. Au fond du mur ouest se trouvait une salle des archives en béton. Le bureau d'Anderson se trouvait dans l'aile est... La pièce suivante dans le couloir était le bureau de Josephine Rector... Les loges, la salle de réception et un petit théâtre occupaient le reste de l'aile est, avec une salle de montage attenante à la cabine de projection. Au deuxième étage de cette aile se trouvaient d'autres loges.</div>
+                <div class="footer">Musée du Cinéma Muet Essanay de Niles, Californie</div>
+            </div>
+            <div class="language-content" id="de-content">
+                <h1 class="title">Hauptgebäude des Studios</h1>
+                <div class="content">Das hochmoderne Hauptgebäude der Studios (60 Meter lang, 15 Meter tief und 5 Meter hoch) umfasste in seinem zentralen Teil die 15 Meter große Produktionsbühne, die mit künstlichem Licht beleuchtet wurde. Dahinter befand sich die verglaste Bühne, die weitere 75 Fuß (und 60 Fuß breit) zurückreichte. Der Westflügel beherbergte eine Tischlerei, einen Szenenraum zum Malen von Kulissen, einen Requisitenraum, eine Lackiererei und den Kostümraum. Neben den Bühnen befand sich eine Dunkelkammer zum Entwickeln von Filmen. An der westlichen Stirnwand befand sich ein Filmarchiv aus Beton. Andersons Büro befand sich im Ostflügel ... Der nächste Raum den Flur hinunter war das Büro von Josephine Rector ... Garderoben, der Empfangsraum und ein kleines Theater füllten den Rest des Ostflügels, mit einem Schnittraum, der an den Vorführraum angeschlossen war. Im zweiten Stock dieses Flügels befanden sich weitere Garderoben.</div>
+                <div class="footer">Niles Essanay Stummfilm Museum, Kalifornien</div>
+            </div>
+            <div class="language-content" id="hi-content">
+                <h1 class="title">स्टूडियो की मुख्य इमारत</h1>
+                <div class="content">अत्याधुनिक स्टूडियो की मुख्य इमारत (200 फीट लंबी, 50 फीट गहरी और 18 फीट ऊंची) के केंद्रीय भाग में पचास फुट-वर्ग का प्रोडक्शन स्टेज था जो कृत्रिम रोशनी से जगमगाता था। इसके पीछे कांच से घिरा स्टेज था जो और 75 फीट (और 60 फीट चौड़ा) पीछे तक जाता था। पश्चिमी विंग में एक बढ़ई की दुकान, बैकड्रॉप पेंटिंग के लिए एक सीन डॉक, एक प्रॉप रूम, एक पेंट शॉप और वार्डरोब रूम था। फिल्म विकसित करने के लिए एक डार्करूम स्टेज के बगल में स्थित था। सबसे पश्चिमी दीवार पर एक कंक्रीट फिल्म वॉल्ट था। एंडरसन का कार्यालय पूर्वी विंग में था... हॉल में अगला कमरा जोसेफाइन रेक्टर का कार्यालय था... ड्रेसिंग रूम, रिसेप्शन रूम और एक छोटा थिएटर शेष पूर्वी विंग को भरते थे, जिसमें एडिटिंग रूम प्रोजेक्शन बूथ से जुड़ा हुआ था। उस विंग की दूसरी मंजिल पर और ड्रेसिंग रूम थे।</div>
+                <div class="footer">नाइल्स एसाने साइलेंट फिल्म संग्रहालय, कैलिफोर्निया</div>
+            </div>
+            <div class="language-content" id="zh-content">
+                <h1 class="title">工作室主楼</h1>
+                <div class="content">尖端工作室的主楼（长200英尺、深50英尺、高18英尺）中央区域设有50英尺见方的人造光源照明舞台。其后方延伸出另一处玻璃幕墙舞台，纵深75英尺（宽60英尺）。西翼设有木工车间、背景布绘制区、道具库、油漆工坊及服装间。暗室用于冲洗胶片，紧邻舞台区域。西墙尽头设有混凝土电影库。安德森的办公室位于东翼……走廊下一间是约瑟芬·雷克托的办公室……更衣室、接待室及小型剧场占据东翼其余空间，剪辑室与放映室相连。该翼二楼设有更多更衣室。</div>
+                <div class="footer">加利福尼亚州奈尔斯埃萨奈无声电影博物馆</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

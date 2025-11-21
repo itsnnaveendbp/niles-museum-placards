@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard 7 - Niles Essanay Studio 1913</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .language-content { display: none; }
+        .language-content.active { display: block; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div class="language-content active" id="en-content">
+                <h1 class="title">Niles Essanay Studio 1913</h1>
+                <div class="content">The Niles Essanay studio in <span class="accent">December 1913</span>. G St. is on the left and Second St. is just passed the eight Essanay bungalows on the studio block. The group of buildings on the top left at Third Street is the <span class="accent">P. C. Hansen Lumber Company</span> supplier of the construction materials for the studio. Note the Indianhead logo on the studio building, the stagecoach and Anderson's Thomas flyer in the yard by the horse stable on the right.</div>
+                <div class="footer">Niles Essanay Silent Film Museum, California</div>
+            </div>
+            <div class="language-content" id="es-content">
+                <h1 class="title">Estudio Niles Essanay 1913</h1>
+                <div class="content">El estudio Niles Essanay en <span class="accent">diciembre de 1913</span>. G St. está a la izquierda y Second St. está justo después de los ocho bungalós Essanay en la manzana del estudio. El grupo de edificios en la parte superior izquierda de Third Street es la <span class="accent">P. C. Hansen Lumber Company</span>, proveedora de los materiales de construcción para el estudio. Obsérvese el logotipo de Indianhead en el edificio del estudio, la diligencia y el folleto de Anderson's Thomas en el patio junto al establo de caballos a la derecha.</div>
+                <div class="footer">Museo de Cine Mudo Essanay de Niles, California</div>
+            </div>
+            <div class="language-content" id="fr-content">
+                <h1 class="title">Studio Niles Essanay 1913</h1>
+                <div class="content">Le studio Niles Essanay en <span class="accent">décembre 1913</span>. G St. se trouve à gauche et Second St. juste après les huit bungalows Essanay du studio. Le groupe de bâtiments en haut à gauche, sur Third Street, est celui de la <span class="accent">P. C. Hansen Lumber Company</span>, fournisseur des matériaux de construction du studio. Remarquez le logo Indianhead sur le bâtiment du studio, la diligence et le flyer Thomas d'Anderson dans la cour près de l'écurie, à droite.</div>
+                <div class="footer">Musée du Cinéma Muet Essanay de Niles, Californie</div>
+            </div>
+            <div class="language-content" id="de-content">
+                <h1 class="title">Niles Essanay Studio 1913</h1>
+                <div class="content">Das Niles Essanay Studio im <span class="accent">Dezember 1913</span>. Die G Street befindet sich auf der linken Seite und die Second Street liegt direkt hinter den acht Essanay-Bungalows auf dem Studiogelände. Die Gebäudegruppe oben links an der Third Street gehört der <span class="accent">P. C. Hansen Lumber Company</span>, die das Studio mit Baumaterialien beliefert. Beachten Sie das Indianhead-Logo auf dem Studiogebäude, die Postkutsche und Andersons Thomas-Flyer im Hof neben dem Pferdestall auf der rechten Seite.</div>
+                <div class="footer">Niles Essanay Stummfilm Museum, Kalifornien</div>
+            </div>
+            <div class="language-content" id="hi-content">
+                <h1 class="title">नाइल्स एसाने स्टूडियो 1913</h1>
+                <div class="content"><span class="accent">दिसंबर 1913</span> में नाइल्स एसने स्टूडियो। जी स्ट्रीट बाईं ओर है और सेकंड स्ट्रीट स्टूडियो ब्लॉक पर आठ एसने बंगलों से ठीक आगे है। थर्ड स्ट्रीट पर शीर्ष बाईं ओर इमारतों का समूह <span class="accent">पी. सी. हैन्सन लम्बर कंपनी</span> है, जो स्टूडियो के लिए निर्माण सामग्री की आपूर्तिकर्ता थी। स्टूडियो भवन पर इंडियनहेड लोगो, स्टेजकोच और दाईं ओर घोड़े के अस्तबल के पास आंगन में एंडरसन का थॉमस फ्लायर ध्यान दें।</div>
+                <div class="footer">नाइल्स एसाने साइलेंट फिल्म संग्रहालय, कैलिफोर्निया</div>
+            </div>
+            <div class="language-content" id="zh-content">
+                <h1 class="title">1913年奈尔斯·埃萨奈制片厂</h1>
+                <div class="content"><span class="accent">1913年12月</span>的奈尔斯·埃萨奈电影制片厂。左侧为G街，第二街则位于片场区八栋埃萨奈平房之后。左上角第三街处的建筑群是<span class="accent">P·C·汉森木材公司</span>，该片场建筑材料的供应商。请注意片场建筑上的印第安人头像标识，以及右侧马厩旁院落里的驿马车和安德森的托马斯飞行器。</div>
+                <div class="footer">加利福尼亚州奈尔斯埃萨奈无声电影博物馆</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

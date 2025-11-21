@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard 17 - Original Barn Door</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .language-content { display: none; }
+        .language-content.active { display: block; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div class="language-content active" id="en-content">
+                <h1 class="title">Original Barn Door</h1>
+                <div class="content">This is the original barn door, which was at the first studio for the Essanay's silent films at the time. The barn was a state of the art studio in <span class="accent">1914</span>. It was moved back on the lot and a house was built in front. The barn was torn down in <span class="accent">1980</span>.</div>
+                <div class="footer">Niles Essanay Silent Film Museum, California</div>
+            </div>
+            <div class="language-content" id="es-content">
+                <h1 class="title">Puerta Original del Granero</h1>
+                <div class="content">Esta es la puerta original del granero, que se encontraba en el primer estudio de las películas mudas de Essanay en aquella época. El granero era un estudio de última generación en <span class="accent">1914</span>. Se trasladó al fondo del terreno y se construyó una casa delante. El granero fue demolido en <span class="accent">1980</span>.</div>
+                <div class="footer">Museo de Cine Mudo Essanay de Niles, California</div>
+            </div>
+            <div class="language-content" id="fr-content">
+                <h1 class="title">Porte d'Origine de la Grange</h1>
+                <div class="content">Il s'agit de la porte d'origine de la grange qui se trouvait dans le premier studio où étaient tournés les films muets d'Essanay à l'époque. En <span class="accent">1914</span>, cette grange était un studio à la pointe de la technologie. Elle a été déplacée vers l'arrière du terrain et une maison a été construite devant. La grange a été démolie en <span class="accent">1980</span>.</div>
+                <div class="footer">Musée du Cinéma Muet Essanay de Niles, Californie</div>
+            </div>
+            <div class="language-content" id="de-content">
+                <h1 class="title">Ursprüngliche Scheunentür</h1>
+                <div class="content">Dies ist die ursprüngliche Scheunentür, die sich damals im ersten Studio für die Stummfilme von Essanay befand. Die Scheune war <span class="accent">1914</span> ein hochmodernes Studio. Sie wurde auf das Grundstück zurückversetzt und davor wurde ein Haus gebaut. Die Scheune wurde <span class="accent">1980</span> abgerissen.</div>
+                <div class="footer">Niles Essanay Stummfilm Museum, Kalifornien</div>
+            </div>
+            <div class="language-content" id="hi-content">
+                <h1 class="title">मूल खलिहान का दरवाज़ा</h1>
+                <div class="content">यह मूल खलिहान का दरवाज़ा है, जो उस समय एसने की मूक फिल्मों के पहले स्टूडियो में था। यह खलिहान <span class="accent">1914</span> में एक अत्याधुनिक स्टूडियो था। इसे लॉट में पीछे ले जाया गया और सामने एक घर बनाया गया। खलिहान को <span class="accent">1980</span> में तोड़ दिया गया था।</div>
+                <div class="footer">नाइल्स एसाने साइलेंट फिल्म संग्रहालय, कैलिफोर्निया</div>
+            </div>
+            <div class="language-content" id="zh-content">
+                <h1 class="title">原始谷仓门</h1>
+                <div class="content">这是最初的谷仓门，当时位于埃萨奈公司无声电影的第一间摄影棚内。这座谷仓在<span class="accent">1914年</span>堪称尖端摄影棚。后来它被移回片场原址，前方建起了一栋房屋。该谷仓于<span class="accent">1980年</span>被拆除。</div>
+                <div class="footer">加利福尼亚州奈尔斯埃萨奈无声电影博物馆</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

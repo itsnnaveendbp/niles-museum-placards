@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard 21 - Directing Scene</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .language-content { display: none; }
+        .language-content.active { display: block; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div class="language-content active" id="en-content">
+                <h1 class="title">Directing Scene</h1>
+                <div class="content"><span class="accent">Anderson</span> (with his back to the camera), directs <span class="accent">Harry Todd, and True Boardman</span> at the barn in the scene from The Tenderfoot Sheriff, <span class="accent">Jess Robbins</span> waits on the sidelines.</div>
+                <div class="footer">Niles Essanay Silent Film Museum, California</div>
+            </div>
+            <div class="language-content" id="es-content">
+                <h1 class="title">Dirigiendo Escena</h1>
+                <div class="content"><span class="accent">Anderson</span> (de espaldas a la cámara) dirige a <span class="accent">Harry Todd y True Boardman</span> en el granero, en una escena de The Tenderfoot Sheriff. <span class="accent">Jess Robbins</span> espera al margen.</div>
+                <div class="footer">Museo de Cine Mudo Essanay de Niles, California</div>
+            </div>
+            <div class="language-content" id="fr-content">
+                <h1 class="title">Mise en Scène</h1>
+                <div class="content"><span class="accent">Anderson</span> (dos à la caméra) dirige <span class="accent">Harry Todd et True Boardman</span> dans la grange, dans une scène tirée du film The Tenderfoot Sheriff. <span class="accent">Jess Robbins</span> attend en retrait.</div>
+                <div class="footer">Musée du Cinéma Muet Essanay de Niles, Californie</div>
+            </div>
+            <div class="language-content" id="de-content">
+                <h1 class="title">Regieführung</h1>
+                <div class="content"><span class="accent">Anderson</span> (mit dem Rücken zur Kamera) gibt <span class="accent">Harry Todd und True Boardman</span> in der Scheune Anweisungen. In der Szene aus „The Tenderfoot Sheriff" wartet <span class="accent">Jess Robbins</span> am Rand.</div>
+                <div class="footer">Niles Essanay Stummfilm Museum, Kalifornien</div>
+            </div>
+            <div class="language-content" id="hi-content">
+                <h1 class="title">दृश्य निर्देशन</h1>
+                <div class="content"><span class="accent">एंडर्सन</span> (कैमरे की ओर पीठ किए हुए), "द टेंडरफुट शेरिफ" के एक दृश्य में खलिहान में <span class="accent">हैरी टॉड और ट्रू बोर्डमैन</span> को निर्देशित कर रहे हैं। <span class="accent">जेस रॉबिन्स</span> किनारे पर इंतजार कर रहे हैं।</div>
+                <div class="footer">नाइल्स एसाने साइलेंट फिल्म संग्रहालय, कैलिफोर्निया</div>
+            </div>
+            <div class="language-content" id="zh-content">
+                <h1 class="title">导演现场</h1>
+                <div class="content"><span class="accent">安德森</span>（背对镜头）在谷仓场景中指导<span class="accent">哈里·托德和特鲁·博德曼</span>拍摄《菜鸟警长》片段，<span class="accent">杰斯·罗宾斯</span>在旁待命。</div>
+                <div class="footer">加利福尼亚州奈尔斯埃萨奈无声电影博物馆</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.language-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
