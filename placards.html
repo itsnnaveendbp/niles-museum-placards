@@ -56,19 +56,81 @@
         </div>
     </div>
 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essanay Studio Museum - Placards</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f5f2ed; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #333; }
+        .container { max-width: 550px; width: 100%; }
+        .language-selector { display: flex; background: #8B4513; padding: 12px 15px; justify-content: space-between; border-radius: 8px 8px 0 0; flex-wrap: wrap; gap: 8px; }
+        .language-btn { background: none; border: none; color: white; font-family: Arial; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.3s; }
+        .language-btn:hover { background: rgba(255,255,255,0.2); }
+        .language-btn.active { background: rgba(255,255,255,0.3); font-weight: bold; }
+        .placard { background: white; padding: 40px 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; position: relative; }
+        .placard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8B4513, #D2B48C, #8B4513); }
+        .title { font-family: Arial; font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 25px; color: #2c2c2c; }
+        .content { font-size: 18px; line-height: 1.7; text-align: justify; margin-bottom: 30px; color: #444; }
+        .footer { text-align: center; font-style: italic; font-size: 16px; color: #666; padding-top: 20px; border-top: 1px solid #eaeaea; }
+        .accent { font-weight: bold; color: #8B4513; }
+        .loading { text-align: center; padding: 40px; color: #666; }
+        .error { text-align: center; padding: 40px; color: #8B4513; }
+        .audio-controls { margin-top: 20px; text-align: center; }
+        .audio-controls audio { width: 100%; max-width: 400px; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 20px; }
+        .nav-btn { background: #8B4513; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-family: Arial; }
+        .nav-btn:hover { background: #A0522D; }
+        .nav-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .placard-info { text-align: center; margin-bottom: 15px; color: #8B4513; font-weight: bold; }
+        @media (max-width: 600px) { 
+            .language-selector { justify-content: center; } 
+            .language-btn { font-size: 12px; padding: 6px 10px; min-width: 80px; text-align: center; }
+            .placard { padding: 30px 25px; }
+            .title { font-size: 24px; }
+            .content { font-size: 16px; }
+            .nav-buttons { flex-direction: column; gap: 10px; }
+            .nav-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="language-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" onclick="switchLanguage('es')">Español</button>
+            <button class="language-btn" onclick="switchLanguage('fr')">Français</button>
+            <button class="language-btn" onclick="switchLanguage('de')">Deutsch</button>
+            <button class="language-btn" onclick="switchLanguage('hi')">हिन्दी</button>
+            <button class="language-btn" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <div class="placard">
+            <div id="placard-content">
+                <div class="loading">Select a language to load content</div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="navigatePlacard(-1)" id="prev-btn">Previous</button>
+                <div class="placard-info" id="placard-info">Placard 1</div>
+                <button class="nav-btn" onclick="navigatePlacard(1)" id="next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         let placardId = urlParams.get('id') || '1';
         let currentLanguage = 'en';
         
-        // Language configuration
+        // Language configuration - MATCHING YOUR ACTUAL FILE NAMES
         const languages = {
-            'en': { name: 'English', filePrefix: 'EN' },
-            'es': { name: 'Español', filePrefix: 'ES' },
-            'fr': { name: 'Français', filePrefix: 'FR' },
-            'de': { name: 'Deutsch', filePrefix: 'DE' },
-            'hi': { name: 'हिन्दी', filePrefix: 'HI' },
-            'zh': { name: '中文', filePrefix: 'CN' }
+            'en': { name: 'English', filePrefix: 'EN', audioSuffix: 'EN' },
+            'es': { name: 'Español', filePrefix: 'ES', audioSuffix: 'ES' },
+            'fr': { name: 'Français', filePrefix: 'FR', audioSuffix: 'FR' },
+            'de': { name: 'Deutsch', filePrefix: 'DE', audioSuffix: 'DE' },
+            'hi': { name: 'हिन्दी', filePrefix: 'HI', audioSuffix: 'HI' },
+            'zh': { name: '中文', filePrefix: 'CN', audioSuffix: 'CN' } // Chinese uses CN
         };
 
         async function loadContent(language) {
@@ -83,17 +145,18 @@
                     loadTextFile(`content/${placardId}_${languages[language].filePrefix}_footer.txt`)
                 ]);
 
-                // Update page title
+                // Update page title and placard info
                 document.title = `Placard ${placardId} - ${titleText}`;
+                document.getElementById('placard-info').textContent = `Placard ${placardId}`;
                 
-                // Build HTML content
+                // Build HTML content with CORRECT AUDIO PATH
                 placardContent.innerHTML = `
                     <h1 class="title">${titleText}</h1>
                     <div class="content">${formatContent(contentText)}</div>
                     <div class="footer">${footerText}</div>
                     <div class="audio-controls">
                         <audio id="audio-player" controls>
-                            <source src="mp3/${placardId}_${languages[language].filePrefix}.mp3" type="audio/mpeg">
+                            <source src="mp3/${placardId}-${languages[language].audioSuffix}.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     </div>
@@ -164,9 +227,11 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             
-            // Simple validation - you might want to check if files actually exist
+            // Simple validation - disable previous button if we're at the first placard
             prevBtn.disabled = parseInt(placardId) <= 1;
-            // For next button, you could check if next placard files exist
+            
+            // For a more robust solution, you could check if the next placard files exist
+            // For now, we'll assume there are many placards and keep Next enabled
         }
 
         // Handle browser back/forward buttons
@@ -193,5 +258,7 @@
             }
         });
     </script>
+</body>
+</html>
 </body>
 </html>
